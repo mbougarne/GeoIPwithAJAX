@@ -11,7 +11,7 @@ function getUserInfoByIp(){
     // XHR CONSTANT 
     const xhr = new XMLHttpRequest();
     
-    // You must have a key, there is free pland and paid ones: https://ipdata.co/pricing.html
+    // You must have a key, there is free plan and paid ones: https://ipdata.co/pricing.html
     const apiKEY = 'YOUR-API-KEY';
 
     // API URL CONSTANT
