@@ -10,9 +10,12 @@ function getUserInfoByIp(){
 
     // XHR CONSTANT 
     const xhr = new XMLHttpRequest();
+    
+    // You must have a key, there is free pland and paid ones: https://ipdata.co/pricing.html
+    const apiKEY = 'YOUR-API-KEY';
 
     // API URL CONSTANT
-    const GeoIPapiURL ='https://api.ipdata.co/';
+    const GeoIPapiURL = `https://api.ipdata.co/${apiKEY}`;
     // OPEN XHR 
     xhr.open('GET', GeoIPapiURL, true);
     
