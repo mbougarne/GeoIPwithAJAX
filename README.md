@@ -33,23 +33,39 @@ Small and simply to use script file to get the visitors countries and phone area
 ```
 A sample use of the script to get the city
 ```javascript
-  const cityInput    = document.querySelector('#cityInput'); # You can select by class or any css selector
+  # You can select by class or any css selector
+  const cityInput = document.querySelector('#cityInput'); 
+  
   # The script will work when all the document is loaded
   document.addEventListener('DOMContentLoaded', getUserInfoByIp);
+  
   function getUserInfoByIp(){
+  
     const xhr = new XMLHttpRequest();
+    
+    // You must have a key, there is free plan and paid ones: https://ipdata.co/pricing.html
+    const apiKEY = 'YOUR-API-KEY';
+
     // API URL CONSTANT
-    const GeoIPapiURL ='https://api.ipdata.co/';
+    const GeoIPapiURL = `https://api.ipdata.co/${apiKEY}`;
+    
     xhr.open('GET', GeoIPapiURL, true);
+    
     xhr.onload = function(e){
+    
         if(this.status === 200){
+        
             // PARSE THE GEOIP API TO JAVASCRIPT OBJECT
             $ipInfo = JSON.parse(this.responseText);
+            
             // GET THE COUNTRY_CODE FROM THE JSON API
             $ipInfoCity = $ipInfo.city;
+            
             cityInput.value = $ipInfoCity;
+            
         }
     }
+    
     xhr.send();
 }
 ```
@@ -57,14 +73,20 @@ A sample use of the script to get the city
 If you want to use it with select tag, you will need to convert it to ARRAY then loop through it with forEach loop
 
 ```javascript
-  const selectCountry    = document.querySelector('#selectCountry');
-  Array.from(selectCountry).forEach(function(opt){     
+  const selectCountry = document.querySelector('#selectCountry');
+  
+  Array.from(selectCountry).forEach(function(opt){  
+  
       // GET THE OPTION VALUE
       let attrVal = opt.attributes['value'].value;
+      
       // IF THE OPT VALUE IS THE SAME AS COUNTRY CODE
       if(attrVal === $ipInfo.country_code){
+      
           // MAKE THE OPT SELECTED
           opt.setAttribute("selected", "selected");
+          
       }
+      
   });
 ```
